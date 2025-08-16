@@ -1,0 +1,43 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/.terraform.tfstate.lock.info
+terraform/tfplan
+terraform/*.log
+terraform/.tfvars
+!terraform/terraform.tfvars.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.env
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/
+
+# Secrets
+*.key
+*.pem
+*.pfx
+secrets/
