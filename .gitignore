@@ -1,13 +1,47 @@
 # Terraform
 *.tfstate
 *.tfstate.*
-terraform/.terraform/
-terraform/.terraform.lock.hcl
-terraform/.terraform.tfstate.lock.info
-terraform/tfplan
-terraform/*.log
-terraform/.tfvars
-!terraform/terraform.tfvars.example
+*.tfplan
+**/.terraform/
+**/.terraform.lock.hcl
+terraform.tfstate.backup
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Databricks
+.databricks/
+*.dbc
+
+# Environment files
+.env
+.env.*
+*.env
+!example.env
+
+# Azure
+*.publishsettings
+*.pubxml
+*.azurepubxml
 
 # IDE
 .vscode/
@@ -15,32 +49,54 @@ terraform/.tfvars
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
 Thumbs.db
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-.Python
-env/
-venv/
-.env
-
-# Notebooks
-.ipynb_checkpoints/
-
-# Docs
-docs/
 
 # Logs
 *.log
 logs/
+*.out
 
-# Secrets
-*.key
+# Data files  
+data/
+*.csv
+*.parquet
+*.json
+!package.json
+!lifecycle-policy.json
+!budget.json
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+
+# Credentials and secrets
 *.pem
+*.key
+*.crt
+*.p12
 *.pfx
 secrets/
+credentials/
+
+# Output files
+outputs.json
+cost-report-*.txt
+demo.tfplan
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Documentation
+docs/

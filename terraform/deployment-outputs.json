@@ -1,8 +1,0 @@
-{
-  "resource_group_name": {
-    "value": "bluewave-rg"
-  },
-  "storage_account_name": {
-    "value": "bluewaveplatformsa"
-  }
-}
