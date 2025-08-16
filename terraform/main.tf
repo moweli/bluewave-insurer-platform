@@ -59,7 +59,7 @@ resource "azurerm_storage_account" "sa" {
   enable_https_traffic_only       = true
 
   blob_properties {
-    versioning_enabled = true
+    # Note: versioning_enabled cannot be true when is_hns_enabled is true
     
     delete_retention_policy {
       days = 30
@@ -67,17 +67,6 @@ resource "azurerm_storage_account" "sa" {
     
     container_delete_retention_policy {
       days = 7
-    }
-  }
-
-  lifecycle_rule {
-    enabled = true
-    name    = "archive-old-data"
-    
-    blob {
-      tier_to_cool_after_days_since_modification_greater_than    = 30
-      tier_to_archive_after_days_since_modification_greater_than = 90
-      delete_after_days_since_modification_greater_than          = 2555
     }
   }
   
@@ -130,11 +119,12 @@ resource "azurerm_storage_container" "archive" {
 
 # Event Hub Namespace
 resource "azurerm_eventhub_namespace" "main" {
-  name                = "${var.prefix}-${var.environment}-${var.location_short}-eventhubs"
+  name                = "${var.prefix}-${var.environment}-${var.location_short}-eventhubs-001"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "Standard"
   capacity            = 2
+  zone_redundant      = true  # Match deployed configuration
   
   auto_inflate_enabled     = true
   maximum_throughput_units = 10
@@ -156,7 +146,7 @@ resource "azurerm_eventhub" "audit_events" {
   name                = "audit-events"
   namespace_name      = azurerm_eventhub_namespace.main.name
   resource_group_name = azurerm_resource_group.rg.name
-  partition_count     = 4
+  partition_count     = 8  # Match deployed configuration
   message_retention   = 3
 }
 

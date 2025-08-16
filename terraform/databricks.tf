@@ -1,12 +1,12 @@
 # Databricks Workspace Configuration
 
 resource "azurerm_databricks_workspace" "main" {
-  name                = "${var.prefix}-${var.environment}-${var.location_short}-databricks"
+  name                = "${var.prefix}-${var.environment}-${var.location_short}-databricks-001"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "premium"
 
-  managed_resource_group_name = "${var.prefix}-${var.environment}-databricks-managed-rg"
+  managed_resource_group_name = "${var.resource_group_name}-databricks-managed"
 
   # Network configuration for private endpoint support
   public_network_access_enabled         = false
@@ -37,9 +37,7 @@ resource "azurerm_storage_account" "unity_catalog" {
   min_tls_version                 = "TLS1_2"
   allow_nested_items_to_be_public = false
   
-  blob_properties {
-    versioning_enabled = true
-  }
+  # Note: versioning_enabled cannot be true when is_hns_enabled is true
 
   tags = local.tags
 }

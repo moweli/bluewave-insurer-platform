@@ -9,7 +9,7 @@ resource_group_name = "bluewave-rg"
 
 # Storage Configuration
 storage_account_name     = "bluewaveplatformsa"
-storage_replication_type = "LRS"
+storage_replication_type = "GRS"  # Match deployed configuration
 
 # Networking Configuration
 vnet_address_space = "10.0.0.0/16"
@@ -19,7 +19,7 @@ allowed_ip_ranges  = []
 enable_customer_managed_keys = false
 
 # Monitoring Configuration
-log_retention_days = 30
+log_retention_days = 730  # Match deployed configuration (2 years)
 alert_email        = "devops@bluewave.com"
 monthly_budget     = 5000
 

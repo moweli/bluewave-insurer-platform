@@ -2,7 +2,7 @@
 
 # Virtual Network
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-${var.environment}-${var.location_short}-vnet"
+  name                = "${var.prefix}-${var.environment}-${var.location_short}-vnet-001"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = [var.vnet_address_space]
@@ -22,7 +22,7 @@ resource "azurerm_subnet" "private_endpoints" {
 
 # Subnet for Databricks Public
 resource "azurerm_subnet" "databricks_public" {
-  name                 = "databricks-public-subnet"
+  name                 = "databricks-public"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = [cidrsubnet(var.vnet_address_space, 8, 2)]
@@ -42,7 +42,7 @@ resource "azurerm_subnet" "databricks_public" {
 
 # Subnet for Databricks Private
 resource "azurerm_subnet" "databricks_private" {
-  name                 = "databricks-private-subnet"
+  name                 = "databricks-private"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = [cidrsubnet(var.vnet_address_space, 8, 3)]

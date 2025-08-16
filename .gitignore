@@ -32,6 +32,9 @@ venv/
 # Notebooks
 .ipynb_checkpoints/
 
+# Docs
+docs/
+
 # Logs
 *.log
 logs/
